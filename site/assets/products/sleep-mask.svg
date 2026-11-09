@@ -7,9 +7,9 @@
     <path d="M30 196q40-28 90-24" fill="none" stroke="#1b1d21" stroke-linejoin="round" stroke-linecap="round" stroke-width="14"/>
     <path d="M370 196q-40-28-90-24" fill="none" stroke="#1b1d21" stroke-linejoin="round" stroke-linecap="round" stroke-width="14"/>
     <path d="M30 196q40-28 90-24M370 196q-40-28-90-24" fill="none" stroke="#bdb5a4" stroke-width="6" stroke-linecap="round"/>
-    <path d="M110 160q90-30 180 0 28 8 24 52-6 54-70 54-26 0-34-22-8-14-30-14t-30 14q-8 22-34 22-64 0-70-54-4-44 24-52z" fill="#34373d" stroke="#1b1d21" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
-    <path d="M128 232q72 16 144 0" fill="none" stroke="#f7f2e7" stroke-width="2.4" stroke-dasharray="2 6"/>
+    <path d="M90 160Q200 130 310 160Q338 168 330 212Q324 266 260 266Q228 266 216 244Q200 220 184 244Q172 266 140 266Q76 266 70 212Q62 168 90 160Z" fill="#34373d" stroke="#1b1d21" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M102 222Q112 246 140 246Q162 246 174 230M226 230Q238 246 260 246Q288 246 298 222" fill="none" stroke="#f7f2e7" stroke-width="2.4" stroke-dasharray="2 6"/>
     <path d="M160 214a40 40 0 0 1 80 0z" fill="#ff5a1f" stroke="#1b1d21" stroke-linejoin="round" stroke-linecap="round" stroke-width="2.4"/>
-    <g stroke-linecap="round" fill="none" stroke="#ff5a1f" stroke-width="3"><path d="M200 156v-16M160 164l-10-10M240 164l10-10M132 192h-14M268 192h14"/></g>
+    <g stroke-linecap="round" fill="none" stroke="#ff5a1f" stroke-width="3"><path d="M200 164v-10M166 174l-7-7M234 174l7-7M144 202h-10M256 202h10"/></g>
     <circle cx="146" cy="224" r="3" fill="#f7f2e7"/><circle cx="254" cy="224" r="3" fill="#f7f2e7"/>
 </svg>

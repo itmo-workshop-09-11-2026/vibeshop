@@ -13,7 +13,7 @@ const BASE = process.env.BASE_URL || `http://127.0.0.1:${PORT}/`;
 const server = spawn("python3", ["main.py"], { cwd: ROOT, env: { ...process.env, PORT: String(PORT) }, stdio: "ignore" });
 await new Promise((r) => setTimeout(r, 1200));
 
-const browser = await chromium.launch({ channel: "chrome" });
+const browser = await chromium.launch(process.env.CHROME_PATH ? { executablePath: process.env.CHROME_PATH } : { channel: "chrome" });
 let passed = 0, failed = 0;
 const failures = [];
 async function check(name, fn) {
@@ -92,7 +92,7 @@ console.log("\nA. Корзина на тестовых ценах (100 ₽ и 20
     eq(await total(page), 100 + 400 - 50); // 500 − 10% = 450
     ok(await row.locator("[data-act=inc]").isDisabled(), "+ должен блокироваться на остатке");
     eq(nums(await row.locator(".line__total").innerText()), 400);
-    await row.locator("[data-act=dec]").click(); await row.locator("[data-act=dec]").click().catch(() => {});
+    await row.locator("[data-act=dec]").click();
     eq(await row.locator(".qty__n").innerText(), "1");
     ok(await row.locator("[data-act=dec]").isDisabled(), "− блокируется на 1");
     eq(await total(page), 270);
@@ -236,7 +236,7 @@ console.log("\nC. Собери экспедицию");
 {
   const { ctx, page, errors } = await open();
   const kitIds = () => page.$$eval("#kit-list .kit__row", (r) => r.map((x) => x.dataset.id).join());
-  const pick = async (name, value) => { await page.locator(`input[name=${name}][value="${value}"]`).check({ force: true }); };
+  const pick = async (name, value) => { await page.locator(`input[name=${name}][value="${value}"]`).check(); };
   async function build(dest, days, prio) {
     await page.click('[data-step="1"]'); await pick("dest", dest); await page.click("[data-nav=next]");
     await pick("days", days); await page.click("[data-nav=next]");
@@ -275,12 +275,12 @@ console.log("\nC. Собери экспедицию");
   await check("исключение позиции пересчитывает итоги; все исключены → кнопки недоступны", async () => {
     await build("moon", 7, "comfort");
     const before = nums(await page.locator(".kit__total-main dd").innerText());
-    await page.locator("#kit-list input[type=checkbox]").first().uncheck({ force: true });
+    await page.locator("#kit-list input[type=checkbox]").first().uncheck();
     ok(nums(await page.locator(".kit__total-main dd").innerText()) < before);
-    while (await page.locator("#kit-list input[type=checkbox]:checked").count()) await page.locator("#kit-list input[type=checkbox]:checked").first().uncheck({ force: true });
+    while (await page.locator("#kit-list input[type=checkbox]:checked").count()) await page.locator("#kit-list input[type=checkbox]:checked").first().uncheck();
     ok(await page.locator("#kit-add").isDisabled() && await page.locator("#kit-passport").isDisabled());
     ok(await page.locator("#kit-empty").isVisible());
-    while (await page.locator("#kit-list input[type=checkbox]:not(:checked)").count()) await page.locator("#kit-list input[type=checkbox]:not(:checked)").first().check({ force: true });
+    while (await page.locator("#kit-list input[type=checkbox]:not(:checked)").count()) await page.locator("#kit-list input[type=checkbox]:not(:checked)").first().check();
   });
   await check("набор добавляется в корзину; повторное добавление — с учётом остатков", async () => {
     await page.click("#kit-add");
@@ -398,7 +398,7 @@ console.log("\nE. Мобильный экран (390×844)");
   });
   await check("подбор экспедиции доступен и помещается по ширине", async () => {
     await page.locator("#expedition").scrollIntoViewIfNeeded(); await page.waitForTimeout(800);
-    await page.locator('input[name=dest][value="mars"]').check({ force: true });
+    await page.locator('input[name=dest][value="mars"]').check();
     await page.locator("[data-nav=next]").tap(); await page.locator("[data-nav=next]").tap(); await page.locator("[data-nav=next]").tap();
     await page.waitForSelector("#kit-list");
     await page.locator("#exp-app").scrollIntoViewIfNeeded(); await page.waitForTimeout(800);
@@ -409,6 +409,25 @@ console.log("\nE. Мобильный экран (390×844)");
     eq(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth), 0);
   });
   ok(errors.length === 0 || (console.log(errors), false), "ошибки консоли на мобильном");
+  await ctx.close();
+}
+
+// Регрессия: иллюстрация целиком видна в узком быстром просмотре.
+{
+  const { ctx, page } = await open({ viewport: { width: 390, height: 844 } });
+  await check("пустое избранное объясняет, как сохранить товары", async () => {
+    await page.locator("#fav-only").click();
+    eq(await page.locator("#empty-title").innerText(), "В избранном пока пусто");
+    await page.locator("#empty-reset").click();
+  });
+  await check("мобильный просмотр не обрезает изображение", async () => {
+    await page.locator(".card__open").first().click();
+    const img = page.locator(".qv__media img");
+    await img.waitFor({ state: "visible" });
+    eq(await img.evaluate(el => getComputedStyle(el).objectFit), "contain");
+    ok(await img.evaluate(el => el.complete && el.naturalWidth > 0));
+    eq(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth), 0);
+  });
   await ctx.close();
 }
 

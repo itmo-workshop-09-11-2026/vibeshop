@@ -120,7 +120,7 @@ export function initCatalog({ store, products, onQuickView, onFavoritesChange })
     const none = list.length === 0;
     emptyEl.hidden = !none; grid.hidden = none;
     if (none) {
-      if (filters.favoritesOnly && !store.favorites().size && isDefault()) {
+      if (filters.favoritesOnly && !store.favorites().size && !filters.query.trim() && filters.category === "all") {
         $("#empty-title").textContent = "В избранном пока пусто";
         $("#empty-text").textContent = "Нажмите на сердечко у товара, чтобы сохранить его здесь.";
       } else {
