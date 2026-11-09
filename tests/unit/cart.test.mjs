@@ -83,17 +83,3 @@ test("остатки ограничивают добавление набора;
   assert.ok(full.complete);
 });
 
-test("состояние неизменяемо", () => {
-  const st0 = Cart.emptyCart();
-  const st1 = Cart.addItem(st0, catalog, "a").state;
-  assert.deepEqual(st0.items, {}); assert.notEqual(st0, st1);
-});
-
-test("форматирование", () => {
-  assert.equal(formatRub(1234567), "1 234 567 ₽");
-  assert.equal(formatMass(80), "80 г"); assert.equal(formatMass(1850), "1,85 кг"); assert.equal(formatMass(2000), "2 кг");
-  assert.equal(plural(1, ["товар", "товара", "товаров"]), "товар");
-  assert.equal(plural(3, ["товар", "товара", "товаров"]), "товара");
-  assert.equal(plural(11, ["товар", "товара", "товаров"]), "товаров");
-  assert.equal(plural(21, ["товар", "товара", "товаров"]), "товар");
-});

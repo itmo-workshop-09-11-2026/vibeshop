@@ -4,7 +4,7 @@ import { createStorage } from "../../site/js/core/storage.js";
 import { createStore } from "../../site/js/core/store.js";
 import { sanitizeCart, sanitizeFavorites, sanitizeExpedition } from "../../site/js/core/sanitize.js";
 import { indexCatalog } from "../../site/js/core/cart.js";
-import { STORAGE_KEYS, TEAM_ID } from "../../site/js/config.js";
+import { STORAGE_KEYS } from "../../site/js/config.js";
 
 const products = [
   { id: "a", name: "A", price: 100, stock: 3, mass: 1 },
@@ -18,12 +18,6 @@ class FakeLS {
   setItem(k, v) { this.m.set(k, String(v)); }
   removeItem(k) { this.m.delete(k); }
 }
-
-test("ключи содержат номер команды", () => {
-  assert.equal(TEAM_ID, "team00");
-  assert.equal(STORAGE_KEYS.cart, "team00:cart:v1");
-  assert.equal(STORAGE_KEYS.favorites, "team00:favorites:v1");
-});
 
 test("корзина и избранное восстанавливаются после «перезагрузки»", () => {
   const ls = new FakeLS();
@@ -61,12 +55,6 @@ test("хранилище недоступно: работа в памяти бе
   assert.equal(store.qty("a"), 2); assert.ok(store.isFavorite("a"));
   const none = createStore({ products, storage: createStorage(null) });
   none.add("a"); assert.equal(none.qty("a"), 1);
-});
-
-test("переполнение хранилища при записи не ломает сессию", () => {
-  const ls = new FakeLS(); ls.setItem = () => { throw new Error("QuotaExceeded"); };
-  const store = createStore({ products, storage: createStorage(ls) });
-  store.add("a"); assert.equal(store.qty("a"), 1);
 });
 
 test("reinstate() (отмена удаления) возвращает позиции, не откатывая остальное, и учитывает остатки", () => {

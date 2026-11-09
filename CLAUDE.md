@@ -66,7 +66,9 @@ vibeshop/
 ├─ package.json                 скрипты тестов; единственная dev-зависимость playwright-core
 ├─ README.md                    запуск, сборка, команда, промокод, функции
 ├─ CLAUDE.md                    этот файл
-├─ deploy/nginx/                конфиг nginx (orbita.conf, orbita-site.conf)
+├─ backend/                     FastAPI: каталог, промокоды, health (app/, tests/, requirements*.txt)
+├─ deploy/nginx/                конфиг nginx (orbita.conf, orbita-site.conf с проксированием /api/)
+├─ deploy/orbita-api.service    systemd-юнит бэкенда (uvicorn, 127.0.0.1:8000)
 ├─ .github/workflows/           ci.yml (тесты), deploy.yml (выкладка на сервер), pages.yml (ручной GitHub Pages)
 ├─ docs/
 │  ├─ SOURCES.md                источники и права на материалы
@@ -346,7 +348,9 @@ WP: <номер и название>
 | Изображения | Собственные SVG, генерируются `tools/gen-images.mjs` |
 | Оформление заказа | Учебное окно, без полей и без сбора данных |
 | Номер команды | `TEAM_ID` в `site/js/config.js`, пока `team00` |
-| Тесты | `node:test` для ядра и данных, Chrome + playwright-core для интерфейса |
+| Тесты | `node:test` для ядра и данных, Chrome + playwright-core для интерфейса, pytest для API |
+| Бэкенд | FastAPI + uvicorn под systemd, без Docker; необязателен: при сбое сайт использует встроенный каталог (`core/apiCatalog.js`) |
+| Источник каталога | `site/js/data/products.js` и `config.js`; `backend/app/catalog.json` генерируется `npm run export:catalog` |
 | Проверка сумм на 100/200 ₽ | Подмена модуля каталога в тесте, реальный ассортимент не меняется |
 
 ---

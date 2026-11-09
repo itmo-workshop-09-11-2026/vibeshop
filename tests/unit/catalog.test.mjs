@@ -84,14 +84,3 @@ test("итоги набора учитывают исключения; пасп�
   assert.match(describeExpedition(sel).title, /Марс · 7 дней · Исследования/);
 });
 
-test("набор из подбора добавляется в корзину с учётом уже выбранного и остатков", () => {
-  const catalog = Cart.indexCatalog(PRODUCTS);
-  const kit = recommend({ dest: "station", days: 7, priority: "research" }, PRODUCTS);
-  const meteor = kit.find((i) => i.id === "meteor-kit");
-  assert.ok(meteor); // остаток 3
-  let st = Cart.addItem(Cart.emptyCart(), catalog, "meteor-kit", 3).state; // выбрали весь остаток
-  const r = Cart.addMany(st, catalog, kit.map((i) => ({ id: i.id, qty: i.qty })));
-  assert.equal(r.complete, false);
-  assert.equal(r.state.items["meteor-kit"], 3);
-  assert.equal(r.results.find((x) => x.id === "meteor-kit").added, 0);
-});

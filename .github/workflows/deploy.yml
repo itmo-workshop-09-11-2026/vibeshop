@@ -50,16 +50,35 @@ jobs:
           # Атомарное переключение: nginx смотрит на ссылку current.
           $SSH "$USER@$HOST" "cd '$BASE' && ln -sfn 'releases/$RELEASE' current.new && mv -Tf current.new current && ls -1dt releases/* | tail -n +6 | xargs -r rm -rf"
 
+      - name: Бэкенд (uvicorn под systemd)
+        env:
+          HOST: ${{ secrets.DEPLOY_HOST }}
+          USER: ${{ secrets.DEPLOY_USER }}
+          PORT: ${{ secrets.DEPLOY_PORT || '22' }}
+          APP: ${{ vars.BACKEND_PATH || '/opt/orbita' }}
+        run: |
+          SSH="ssh -i ~/.ssh/id_deploy -p $PORT"
+          $SSH "$USER@$HOST" "mkdir -p '$APP/backend'"
+          rsync -az --delete --exclude '.venv' --exclude '__pycache__' --exclude '.pytest_cache' --exclude 'tests' -e "$SSH" backend/ "$USER@$HOST:$APP/backend/"
+          $SSH "$USER@$HOST" "cd '$APP/backend' && { [ -d .venv ] || python3 -m venv .venv; } && .venv/bin/pip install -q -r requirements.txt && sudo -n /usr/bin/systemctl restart orbita-api"
+
       - name: Проверка публичной ссылки
         env:
           URL: ${{ vars.SITE_URL }}
         run: |
+          if [ -z "$URL" ]; then
+            echo "::error::Не задана переменная SITE_URL (Settings → Secrets and variables → Actions → Variables), например http://1.2.3.4 или https://example.com"
+            exit 1
+          fi
+          URL="${URL%/}"
           for i in 1 2 3 4 5; do
             got="$(curl -fsS "$URL/version.txt" || true)"
             [ "$got" = "$GITHUB_SHA" ] && break
             sleep 3
           done
           [ "$got" = "$GITHUB_SHA" ] || { echo "На сайте версия '$got', ожидалась $GITHUB_SHA"; exit 1; }
+          for i in 1 2 3 4 5 6 7 8; do curl -fsS "$URL/api/health" && break; sleep 3; done
+          curl -fsS "$URL/api/health" | grep -q '"status":"ok"'
           curl -fsS "$URL/healthz" && curl -fsS "$URL/" | grep -q "ОРБИТА"
           curl -fsSI "$URL/js/main.js" | grep -i "content-type"
           echo "Выкладка $GITHUB_SHA доступна: $URL"

@@ -21,6 +21,14 @@ jobs:
         with:
           python-version: '3.12'
       - run: npm ci
+      - name: Бэкенд — зависимости и тесты (pytest)
+        run: |
+          pip install -r backend/requirements-dev.txt
+          (cd backend && python -m pytest -q)
+      - name: Бэкенд — запуск для интеграционных проверок
+        run: |
+          nohup python -m uvicorn app.main:app --app-dir backend --port 8010 > uvicorn.log 2>&1 &
+          for i in $(seq 1 20); do curl -fs http://127.0.0.1:8010/api/health && break; sleep 1; done
       - name: Юнит-тесты
         run: npm test
       - name: Упаковка и HTTP
@@ -31,6 +39,7 @@ jobs:
         run: npm run test:e2e
         env:
           E2E_CSP: '1'
+          BACKEND_URL: http://127.0.0.1:8010
       - name: Скриншоты e2e при падении
         if: failure()
         uses: actions/upload-artifact@v4

@@ -2,7 +2,7 @@
 
 Учебный интернет-магазин вымышленного бренда космического снаряжения. Покупатель выбирает направление (Луна, Марс, орбитальная станция), срок и приоритет, получает набор из реального каталога и «паспорт экспедиции». **Бренд, товары и цифры вымышлены; оплаты и сбора личных данных нет.**
 
-Стек: чистые HTML, CSS и ES-модули. Сборщика нет: папка `site/` и есть готовая статическая сборка. Backend, база данных, секреты и внешние сервисы не используются.
+Стек: чистые HTML, CSS и ES-модули. Сборщика нет: папка `site/` и есть готовая статическая сборка. Сайт работает полностью без сервера. Необязательный бэкенд на FastAPI (`backend/`) отдаёт каталог и промокоды; если он недоступен, сайт использует встроенные данные.
 
 ## Запуск
 
@@ -69,3 +69,13 @@ python3 tests/test_pack.py && python3 tests/smoke.py   # упаковка и HTT
 ## Деплой на сервер
 
 CI/CD на GitHub Actions и nginx: см. [docs/DEPLOY.md](docs/DEPLOY.md) и каталог `deploy/nginx/`.
+
+## Бэкенд (необязательный)
+
+```bash
+cd backend && python3 -m venv .venv && .venv/bin/pip install -r requirements-dev.txt
+.venv/bin/python -m uvicorn app.main:app --port 8010     # http://127.0.0.1:8010/api/docs
+.venv/bin/python -m pytest -q                             # тесты API
+npm run export:catalog                                    # обновить backend/app/catalog.json из products.js
+```
+Эндпоинты: `GET /api/health`, `/api/catalog`, `/api/categories`, `/api/products` (`category`, `q`, `sort`), `/api/products/{id}`, `POST /api/promo/validate`.
