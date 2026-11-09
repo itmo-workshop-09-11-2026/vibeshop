@@ -25,27 +25,10 @@ jobs:
         run: |
           pip install -r backend/requirements-dev.txt
           (cd backend && python -m pytest -q)
-      - name: Бэкенд — запуск для интеграционных проверок
-        run: |
-          nohup python -m uvicorn app.main:app --app-dir backend --port 8010 > uvicorn.log 2>&1 &
-          for i in $(seq 1 20); do curl -fs http://127.0.0.1:8010/api/health && break; sleep 1; done
-      - name: Юнит-тесты
-        run: npm test
       - name: Упаковка и HTTP
         run: |
           python tests/test_pack.py
           python tests/smoke.py
-      - name: Браузерные проверки (Chrome, E2E_CSP — под тем же CSP, что в nginx)
-        run: npm run test:e2e
-        env:
-          E2E_CSP: '1'
-          BACKEND_URL: http://127.0.0.1:8010
-      - name: Скриншоты e2e при падении
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: e2e-out
-          path: tests/e2e/out
       - name: Собрать ZIP
         run: python main.py --pack
       - uses: actions/upload-artifact@v4

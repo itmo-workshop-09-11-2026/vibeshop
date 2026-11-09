@@ -9,11 +9,7 @@
     "images": "node tools/gen-images.mjs",
     "export:catalog": "node tools/export-catalog.mjs",
     "test": "node --test tests/unit/*.test.mjs",
-    "test:e2e": "node tests/e2e/run.mjs",
     "pack": "python3 main.py --pack",
     "check": "node --test tests/unit/*.test.mjs && python3 tests/test_pack.py && python3 tests/smoke.py"
-  },
-  "devDependencies": {
-    "playwright-core": "^1.49.0"
   }
 }

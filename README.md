@@ -52,16 +52,13 @@ site/js/core/              чистая логика без DOM: cart, promo, ca
 site/js/ui/                отображение: каталог, корзина, быстрый просмотр, экспедиция, паспорт, диалоги, уведомления
 site/assets/products/      SVG-иллюстрации (генерируются tools/gen-images.mjs)
 tests/unit/                node:test — расчёты и корзина
-tests/e2e/run.mjs          проверка в Chrome (playwright-core)
 docs/                      источники, сценарий демо, отчёт о проверках
 ```
 
 ## Проверки
 
 ```bash
-npm install                # один раз, только playwright-core для e2e
 npm test                   # юнит-тесты (node --test)
-npm run test:e2e           # браузерные проверки, нужен установленный Google Chrome
 python3 tests/test_pack.py && python3 tests/smoke.py   # упаковка и HTTP
 ```
 Результаты — в [docs/REPORT.md](docs/REPORT.md). Источники материалов — [docs/SOURCES.md](docs/SOURCES.md). Сценарий показа — [docs/DEMO.md](docs/DEMO.md).
