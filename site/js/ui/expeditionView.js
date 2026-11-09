@@ -79,13 +79,13 @@ export function initExpedition({ store, products, storage, openCart }) {
             <button type="button" class="kit__chip" data-step="2">${icon("box")}${esc(info.duration.name)} <small>изменить</small></button>
             <button type="button" class="kit__chip" data-step="3">${icon(info.priority.icon)}${esc(info.priority.name)} <small>изменить</small></button>
           </div>
-          <ul class="kit__facts prose" style="list-style:none;padding:0;color:var(--ink-dim);font-size:.9rem">${info.dest.facts.map((f) => `<li>· ${esc(f)}</li>`).join("")}</ul>
+          <ul class="kit__facts">${info.dest.facts.map((f) => `<li>· ${esc(f)}</li>`).join("")}</ul>
         </div>
         <div class="kit__layout">
           <div>
             <h4 class="sr-only">Состав набора</h4>
             <ul class="kit__list" id="kit-list">${kit.map(rowHtml).join("")}</ul>
-            <p class="kit__hint" style="margin-top:12px;font-size:.85rem;color:var(--ink-dim)">Снимите галочку, чтобы исключить позицию из набора.</p>
+            <p class="kit__hint">Снимите галочку, чтобы исключить позицию из набора.</p>
           </div>
           <aside class="kit__aside" aria-label="Итоги набора">
             <dl class="kit__totals" id="kit-totals"></dl>

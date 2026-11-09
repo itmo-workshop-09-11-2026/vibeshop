@@ -66,9 +66,12 @@ vibeshop/
 ├─ package.json                 скрипты тестов; единственная dev-зависимость playwright-core
 ├─ README.md                    запуск, сборка, команда, промокод, функции
 ├─ CLAUDE.md                    этот файл
+├─ deploy/nginx/                конфиг nginx (orbita.conf, orbita-site.conf)
+├─ .github/workflows/           ci.yml (тесты), deploy.yml (выкладка на сервер), pages.yml (ручной GitHub Pages)
 ├─ docs/
 │  ├─ SOURCES.md                источники и права на материалы
 │  ├─ DEMO.md                   сценарий демонстрации на 90 секунд
+│  ├─ DEPLOY.md                 подготовка сервера, ключи, откат
 │  └─ REPORT.md                 факты о проверках и ограничения
 ├─ tools/
 │  └─ gen-images.mjs            генератор SVG-иллюстраций товаров

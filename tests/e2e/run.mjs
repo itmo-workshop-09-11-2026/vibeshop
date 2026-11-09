@@ -24,6 +24,13 @@ const eq = (a, b, m = "") => { if (a !== b) throw new Error(`${m} ожидало
 const ok = (v, m = "условие ложно") => { if (!v) throw new Error(m); };
 const nums = (s) => Number(String(s).replace(/[^\d−-]/g, "").replace("−", "-"));
 
+// E2E_CSP=1: подставляем в ответы тот же Content-Security-Policy, что отдаёт nginx.
+// Любое нарушение (инлайновый стиль, чужой скрипт, внешний ресурс) попадёт в консоль и провалит проверки.
+const CSP = process.env.E2E_CSP
+  ? readFileSync(path.join(ROOT, "deploy/nginx/orbita-site.conf"), "utf8").match(/Content-Security-Policy "([^"]+)"/)[1]
+  : null;
+if (CSP) console.log("Проверка под CSP:", CSP);
+
 const TEST_CATALOG = `export const CATEGORIES=[{id:"food",name:"Питание"},{id:"gear",name:"Оборудование"},{id:"home",name:"Быт"},{id:"gifts",name:"Сувениры"}];
 export const PRODUCTS=[
 {id:"t100",sku:"Т-1",category:"food",name:"Тест 100",price:100,mass:10,stock:5,popularity:10,image:"./assets/products/patch.svg",short:"s",description:"d",specs:[["a","b"],["c","d"],["e","f"]]},
@@ -31,6 +38,10 @@ export const PRODUCTS=[
 
 async function open(ctxOpts = {}, { testCatalog = false, init } = {}) {
   const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, acceptDownloads: true, ...ctxOpts });
+  if (CSP) await ctx.route("**/*", async (route) => {
+    const r = await route.fetch();
+    await route.fulfill({ response: r, headers: { ...r.headers(), "content-security-policy": CSP } });
+  });
   if (testCatalog) await ctx.route("**/js/data/products.js", (r) => r.fulfill({ contentType: "text/javascript", body: TEST_CATALOG }));
   if (init) await ctx.addInitScript(init);
   const page = await ctx.newPage();
@@ -41,6 +52,12 @@ async function open(ctxOpts = {}, { testCatalog = false, init } = {}) {
   await page.goto(BASE);
   await page.waitForSelector("#grid .card");
   return { ctx, page, errors };
+}
+// Переключение чекбокса/радио как с клавиатуры: фокус + пробел (клик по прозрачному input может попасть под липкую шапку).
+async function setChecked(page, locator, want = true) {
+  if ((await locator.isChecked()) === want) return;
+  await locator.focus(); await page.keyboard.press("Space");
+  if ((await locator.isChecked()) !== want) throw new Error("не удалось переключить");
 }
 const cartOpen = async (page) => { await page.click("#cart-open"); await page.waitForSelector("#cart-dialog[open]"); };
 const total = (page) => page.locator("#cart-foot .sum__total dd").innerText().then(nums);
@@ -236,7 +253,7 @@ console.log("\nC. Собери экспедицию");
 {
   const { ctx, page, errors } = await open();
   const kitIds = () => page.$$eval("#kit-list .kit__row", (r) => r.map((x) => x.dataset.id).join());
-  const pick = async (name, value) => { await page.locator(`input[name=${name}][value="${value}"]`).check({ force: true }); };
+  const pick = async (name, value) => { await setChecked(page, page.locator(`input[name=${name}][value="${value}"]`)); };
   async function build(dest, days, prio) {
     await page.click('[data-step="1"]'); await pick("dest", dest); await page.click("[data-nav=next]");
     await pick("days", days); await page.click("[data-nav=next]");
@@ -275,12 +292,13 @@ console.log("\nC. Собери экспедицию");
   await check("исключение позиции пересчитывает итоги; все исключены → кнопки недоступны", async () => {
     await build("moon", 7, "comfort");
     const before = nums(await page.locator(".kit__total-main dd").innerText());
-    await page.locator("#kit-list input[type=checkbox]").first().uncheck({ force: true });
+    await setChecked(page, page.locator("#kit-list input[type=checkbox]").first(), false);
     ok(nums(await page.locator(".kit__total-main dd").innerText()) < before);
-    while (await page.locator("#kit-list input[type=checkbox]:checked").count()) await page.locator("#kit-list input[type=checkbox]:checked").first().uncheck({ force: true });
+    const boxes = page.locator("#kit-list input[type=checkbox]"), n = await boxes.count();
+    for (let i = 0; i < n; i++) await setChecked(page, boxes.nth(i), false);
     ok(await page.locator("#kit-add").isDisabled() && await page.locator("#kit-passport").isDisabled());
     ok(await page.locator("#kit-empty").isVisible());
-    while (await page.locator("#kit-list input[type=checkbox]:not(:checked)").count()) await page.locator("#kit-list input[type=checkbox]:not(:checked)").first().check({ force: true });
+    for (let i = 0; i < n; i++) await setChecked(page, boxes.nth(i), true);
   });
   await check("набор добавляется в корзину; повторное добавление — с учётом остатков", async () => {
     await page.click("#kit-add");
