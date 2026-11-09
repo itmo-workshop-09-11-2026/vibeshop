@@ -9,4 +9,6 @@ __pycache__/
 .idea/
 .vscode/
 node_modules/
-tests/e2e/out/
+backend/.venv/
+backend/.pytest_cache/
+__pycache__/

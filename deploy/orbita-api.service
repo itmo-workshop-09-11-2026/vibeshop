@@ -1,0 +1,22 @@
+# systemd-сервис бэкенда. Установка: sudo cp deploy/orbita-api.service /etc/systemd/system/
+#   sudo systemctl daemon-reload && sudo systemctl enable --now orbita-api
+# Слушает только 127.0.0.1:8000, наружу его отдаёт nginx (location /api/).
+[Unit]
+Description=ORBITA API (FastAPI / uvicorn)
+After=network.target
+
+[Service]
+User=deploy
+Group=deploy
+WorkingDirectory=/opt/orbita/backend
+ExecStart=/opt/orbita/backend/.venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8000 --proxy-headers
+Restart=on-failure
+RestartSec=3
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadOnlyPaths=/opt/orbita
+
+[Install]
+WantedBy=multi-user.target

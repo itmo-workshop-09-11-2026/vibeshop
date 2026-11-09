@@ -1,10 +1,14 @@
 import { PROMO_CODES } from "../config.js";
 
+// Таблица промокодов может быть заменена данными с сервера (см. main.js).
+let activeCodes = PROMO_CODES;
+export function setPromoCodes(codes) { activeCodes = codes; }
+
 export function normalizeCode(raw) {
   return String(raw ?? "").trim().toUpperCase();
 }
 
-export function findPromo(raw, codes = PROMO_CODES) {
+export function findPromo(raw, codes = activeCodes) {
   const code = normalizeCode(raw);
   return Object.prototype.hasOwnProperty.call(codes, code) ? { code, ...codes[code] } : null;
 }
