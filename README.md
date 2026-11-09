@@ -65,3 +65,7 @@ npm run test:e2e           # браузерные проверки, нужен �
 python3 tests/test_pack.py && python3 tests/smoke.py   # упаковка и HTTP
 ```
 Результаты — в [docs/REPORT.md](docs/REPORT.md). Источники материалов — [docs/SOURCES.md](docs/SOURCES.md). Сценарий показа — [docs/DEMO.md](docs/DEMO.md).
+
+## Деплой на сервер
+
+CI/CD на GitHub Actions и nginx: см. [docs/DEPLOY.md](docs/DEPLOY.md) и каталог `deploy/nginx/`.

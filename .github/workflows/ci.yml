@@ -1,0 +1,46 @@
+name: CI
+on:
+  pull_request:
+  push:
+    branches-ignore: [main]   # для main тесты запускает deploy.yml
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: npm ci
+      - name: Юнит-тесты
+        run: npm test
+      - name: Упаковка и HTTP
+        run: |
+          python tests/test_pack.py
+          python tests/smoke.py
+      - name: Браузерные проверки (Chrome, E2E_CSP — под тем же CSP, что в nginx)
+        run: npm run test:e2e
+        env:
+          E2E_CSP: '1'
+      - name: Скриншоты e2e при падении
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-out
+          path: tests/e2e/out
+      - name: Собрать ZIP
+        run: python main.py --pack
+      - uses: actions/upload-artifact@v4
+        with:
+          name: orbita-site-zip
+          path: shop.zip
+          retention-days: 30

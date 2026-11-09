@@ -137,6 +137,7 @@ export function initCatalog({ store, products, onQuickView, onFavoritesChange })
     render();
   }
 
+  $("#toolbar").addEventListener("submit", (e) => e.preventDefault());
   search.addEventListener("input", () => { filters.query = search.value; render(); });
   sortEl.addEventListener("change", () => { filters.sort = sortEl.value; render(); });
   catsEl.addEventListener("click", (e) => {
