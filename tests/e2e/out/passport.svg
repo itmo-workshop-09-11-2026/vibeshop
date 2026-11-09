@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1282" width="900" height="1282" role="img" aria-label="Паспорт экспедиции ОР-МКС-7И-0229: Орбитальная станция · 7 дней · Исследования. Состав: Набор для наблюдения за метеорами — 1 шт.; Эспрессо «Обратный отсчёт» — 3 шт.; Карманная оранжерея — 1 шт.; Гелевые батончики «Перигей» — 4 шт.; Манговые кубики невесомости — 3 шт.; Магнитная кружка — 1 шт.. Стоимость 13 900 ₽, масса 3,71 кг.">
+  <title>Паспорт экспедиции ОР-МКС-7И-0229</title>
+  <rect width="900" height="1282" fill="#14151a"/>
+  <rect x="22" y="22" width="856" height="1238" fill="none" stroke="rgba(239,232,220,.28)" stroke-width="2"/>
+  <g stroke="#efe8dc" stroke-width="2" fill="none"><path d="M22 52V22h30M848 22h30v30M22 1230v30h30M848 1260h30v-30"/></g>
+
+  <g transform="translate(70 88)">
+    <circle cx="20" cy="0" r="19" fill="none" stroke="#efe8dc" stroke-width="4"/><circle cx="20" cy="0" r="6" fill="#ff5a1f"/>
+    <text x="56" y="10" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="30" font-weight="800" letter-spacing="5" fill="#efe8dc">ОРБИТА</text>
+  </g>
+  <text x="830" y="84" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="15" letter-spacing="3" fill="#a8a297" text-anchor="end">ПАСПОРТ ЭКСПЕДИЦИИ</text>
+  <text x="830" y="108" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="15" letter-spacing="1" fill="#a8a297" text-anchor="end">ВЫДАН 09.11.2026</text>
+
+  <line x1="70" y1="140" x2="830" y2="140" stroke="rgba(239,232,220,.28)"/>
+  <text x="70" y="182" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="18" letter-spacing="2" fill="#ff5a1f">№ ОР-МКС-7И-0229</text>
+
+  <g transform="rotate(-18 770 250)" fill="none" stroke="#efe8dc" stroke-opacity=".5" stroke-width="1.5">
+    <ellipse cx="770" cy="250" rx="112" ry="38" stroke-dasharray="4 8"/>
+  </g>
+  <circle cx="770" cy="250" r="30" fill="#25282d" stroke="#efe8dc" stroke-opacity=".6" stroke-width="1.5"/>
+  <circle cx="874" cy="220" r="8" fill="#ff5a1f"/>
+
+  <text x="64" y="330" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="124" font-weight="800" letter-spacing="-3" fill="#efe8dc">СТАНЦИЯ</text>
+  <text x="70" y="378" font-family="'Iowan Old Style','Palatino Linotype',Palatino,Georgia,serif" font-size="30" font-style="italic" fill="#efe8dc">Орбитальная станция · 7 дней</text>
+
+  <g transform="translate(70 424)" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace">
+    <g transform="translate(0 0)"><line x1="0" y1="0" x2="232" y2="0" stroke="#efe8dc" stroke-width="2"/><text x="0" y="28" font-size="13" letter-spacing="2" fill="#a8a297">НАПРАВЛЕНИЕ</text><text x="0" y="58" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="21" font-weight="700" fill="#efe8dc">Орбитальная станция</text></g><g transform="translate(252 0)"><line x1="0" y1="0" x2="232" y2="0" stroke="#efe8dc" stroke-width="2"/><text x="0" y="28" font-size="13" letter-spacing="2" fill="#a8a297">СРОК</text><text x="0" y="58" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="26" font-weight="700" fill="#efe8dc">7 дней</text></g><g transform="translate(504 0)"><line x1="0" y1="0" x2="232" y2="0" stroke="#efe8dc" stroke-width="2"/><text x="0" y="28" font-size="13" letter-spacing="2" fill="#a8a297">ПРИОРИТЕТ</text><text x="0" y="58" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="26" font-weight="700" fill="#efe8dc">Исследования</text></g>
+  </g>
+
+  <g font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="21" fill="#a8a297">
+    <text x="70" y="540">Орбитальная вахта: невесомость, шестнадцать рассветов в сутки и тесные</text><text x="70" y="570">модули. Неделя в пути: хватит на привычки, но не на лишний багаж.</text><text x="70" y="600">Приоритет — исследования: оборудование и энергия на работу.</text>
+  </g>
+
+  <g transform="translate(0 640)">
+    <text x="70" y="26" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="14" letter-spacing="3" fill="#a8a297">СОСТАВ НАБОРА · 6 ПОЗИЦИЙ</text>
+    <line x1="70" y1="46" x2="830" y2="46" stroke="#efe8dc" stroke-width="2"/>
+  </g>
+  <g transform="translate(70 710)">
+      <line x1="0" y1="48" x2="760" y2="48" stroke="rgba(239,232,220,.28)"/>
+      <text x="0" y="30" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="15" fill="#ff5a1f" letter-spacing="1">ОР-203</text>
+      <text x="96" y="30" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" font-weight="700" fill="#efe8dc">Набор для наблюдения за метеорами</text>
+      <text x="630" y="30" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="17" fill="#a8a297" text-anchor="end">1 × 4 500 ₽</text>
+      <text x="760" y="30" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="20" font-weight="700" fill="#efe8dc" text-anchor="end">4 500 ₽</text>
+      <title>Оборудование</title>
+    </g><g transform="translate(70 758)">
+      <line x1="0" y1="48" x2="760" y2="48" stroke="rgba(239,232,220,.28)"/>
+      <text x="0" y="30" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="15" fill="#ff5a1f" letter-spacing="1">ОР-102</text>
+      <text x="96" y="30" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="23" font-weight="700" fill="#efe8dc">Эспрессо «Обратный отсчёт»</text>
+      <text x="630" y="30" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="17" fill="#a8a297" text-anchor="end">3 × 690 ₽</text>
+      <text x="760" y="30" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="20" font-weight="700" fill="#efe8dc" text-anchor="end">2 070 ₽</text>
+      <title>Питание</title>
+    </g><g transform="translate(70 806)">
+      <line x1="0" y1="48" x2="760" y2="48" stroke="rgba(239,232,220,.28)"/>
+      <text x="0" y="30" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="15" fill="#ff5a1f" letter-spacing="1">ОР-202</text>
+      <text x="96" y="30" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="23" font-weight="700" fill="#efe8dc">Карманная оранжерея</text>
+      <text x="630" y="30" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="17" fill="#a8a297" text-anchor="end">1 × 2 900 ₽</text>
+      <text x="760" y="30" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="20" font-weight="700" fill="#efe8dc" text-anchor="end">2 900 ₽</text>
+      <title>Оборудование</title>
+    </g><g transform="translate(70 854)">
+      <line x1="0" y1="48" x2="760" y2="48" stroke="rgba(239,232,220,.28)"/>
+      <text x="0" y="30" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="15" fill="#ff5a1f" letter-spacing="1">ОР-104</text>
+      <text x="96" y="30" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" font-weight="700" fill="#efe8dc">Гелевые батончики «Перигей»</text>
+      <text x="630" y="30" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="17" fill="#a8a297" text-anchor="end">4 × 390 ₽</text>
+      <text x="760" y="30" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="20" font-weight="700" fill="#efe8dc" text-anchor="end">1 560 ₽</text>
+      <title>Питание</title>
+    </g><g transform="translate(70 902)">
+      <line x1="0" y1="48" x2="760" y2="48" stroke="rgba(239,232,220,.28)"/>
+      <text x="0" y="30" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="15" fill="#ff5a1f" letter-spacing="1">ОР-101</text>
+      <text x="96" y="30" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="19" font-weight="700" fill="#efe8dc">Манговые кубики невесомости</text>
+      <text x="630" y="30" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="17" fill="#a8a297" text-anchor="end">3 × 490 ₽</text>
+      <text x="760" y="30" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="20" font-weight="700" fill="#efe8dc" text-anchor="end">1 470 ₽</text>
+      <title>Питание</title>
+    </g><g transform="translate(70 950)">
+      <line x1="0" y1="48" x2="760" y2="48" stroke="rgba(239,232,220,.28)"/>
+      <text x="0" y="30" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="15" fill="#ff5a1f" letter-spacing="1">ОР-302</text>
+      <text x="96" y="30" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="23" font-weight="700" fill="#efe8dc">Магнитная кружка</text>
+      <text x="630" y="30" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="17" fill="#a8a297" text-anchor="end">1 × 1 400 ₽</text>
+      <text x="760" y="30" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="20" font-weight="700" fill="#efe8dc" text-anchor="end">1 400 ₽</text>
+      <title>Быт</title>
+    </g>
+
+  <g transform="translate(70 1022)" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace">
+    <text x="0" y="22" font-size="13" letter-spacing="2" fill="#a8a297">ЕДИНИЦ В НАБОРЕ</text><text x="0" y="62" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="36" font-weight="800" fill="#efe8dc">13</text>
+    <text x="230" y="22" font-size="13" letter-spacing="2" fill="#a8a297">МАССА</text><text x="230" y="62" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="36" font-weight="800" fill="#efe8dc">3,71 кг</text>
+    <text x="760" y="22" font-size="13" letter-spacing="2" fill="#a8a297" text-anchor="end">СТОИМОСТЬ</text><text x="760" y="68" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="46" font-weight="800" fill="#ff5a1f" text-anchor="end">13 900 ₽</text>
+  </g>
+
+  <g transform="translate(70 1156)">
+    <g transform="translate(0 0)"><rect x="0" y="0" width="6" height="44" fill="#efe8dc"/><rect x="9" y="0" width="10" height="44" fill="#efe8dc"/><rect x="22" y="0" width="2" height="44" fill="#efe8dc"/><rect x="27" y="0" width="6" height="44" fill="#efe8dc"/><rect x="36" y="0" width="2" height="44" fill="#efe8dc"/><rect x="41" y="0" width="4" height="44" fill="#efe8dc"/><rect x="48" y="0" width="2" height="44" fill="#efe8dc"/><rect x="53" y="0" width="2" height="44" fill="#efe8dc"/><rect x="58" y="0" width="8" height="44" fill="#efe8dc"/><rect x="69" y="0" width="2" height="44" fill="#efe8dc"/><rect x="74" y="0" width="10" height="44" fill="#efe8dc"/><rect x="87" y="0" width="2" height="44" fill="#efe8dc"/><rect x="92" y="0" width="2" height="44" fill="#efe8dc"/><rect x="97" y="0" width="6" height="44" fill="#efe8dc"/></g>
+    <text x="0" y="68" font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="12" letter-spacing="2" fill="#a8a297">ОР-МКС-7И-0229</text>
+  </g>
+  <g font-family="ui-monospace,'SF Mono',Menlo,Consolas,monospace" font-size="13" fill="#a8a297" text-anchor="end">
+    <text x="830" y="1188">УЧЕБНЫЙ ПРОЕКТ</text>
+    <text x="830" y="1210">Бренд, товары и экспедиция вымышлены</text>
+  </g>
+</svg>

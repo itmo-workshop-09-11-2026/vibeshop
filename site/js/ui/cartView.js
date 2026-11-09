@@ -1,3 +1,4 @@
+import { animateFeedback, promoFeedback } from "./motion.js";
 // Корзина (выдвижная панель): позиции, количество, промокод, итоги, отмена удаления.
 import { $, $$, esc, icon } from "./dom.js";
 import { formatRub, plural } from "../core/money.js";
@@ -16,6 +17,7 @@ export function initCart({ store, onCheckout }) {
     sumEl.textContent = formatRub(s.total);
     btn.setAttribute("aria-label", `Корзина: ${s.count} ${plural(s.count, ["единица", "единицы", "единиц"])}, к оплате ${formatRub(s.total)}`);
     if (String(s.count) !== prev) {
+      animateFeedback(countEl, [{ transform: "scale(1)" }, { transform: "scale(1.28)" }, { transform: "scale(1)" }]);
       btn.classList.add("bump");
       setTimeout(() => btn.classList.remove("bump"), 220);
     }
@@ -140,6 +142,7 @@ export function initCart({ store, onCheckout }) {
     const r = store.applyPromo(input.value);
     promoMsg = { kind: r.ok ? "ok" : "error", text: r.message };
     render();
+    promoFeedback(foot, r.ok);
     announce(r.message, { assertive: !r.ok });
     const next = $("#promo-input", foot);
     if (!r.ok) { next.value = input.value; next.focus(); next.setAttribute("aria-invalid", "true"); } else next.focus();

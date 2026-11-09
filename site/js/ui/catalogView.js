@@ -1,3 +1,4 @@
+import { addedFeedback } from "./motion.js";
 // Каталог: фильтры, сетка карточек, кнопки «в корзину» и «в избранное».
 import { $, $$, esc, icon } from "./dom.js";
 import { CATEGORIES } from "../data/products.js";
@@ -23,6 +24,7 @@ export function syncAddButton(btn, store, p) {
 
 export function flashAdded(btn, store, p) {
   btn.classList.add("is-done");
+  addedFeedback(btn);
   btn.disabled = false;
   btn.innerHTML = `${icon("check")}Добавлено`;
   setTimeout(() => {

@@ -156,13 +156,39 @@
             <title id="bp-title">Чертёж модуля ОР-1 на орбите Луны</title>
             <desc id="bp-desc">Герметичный модуль с солнечными панелями и иллюминаторами на фоне Луны; подписаны
               основные узлы и длина.</desc>
-            <circle class="bp-moon" cx="408" cy="372" r="184" />
-            <g class="bp-craters">
-              <circle cx="340" cy="300" r="34" />
-              <circle cx="470" cy="420" r="22" />
-              <circle cx="392" cy="470" r="14" />
-              <circle cx="494" cy="330" r="11" />
-              <circle cx="322" cy="410" r="8" />
+            <defs>
+              <radialGradient id="moon-surface" cx="24%" cy="22%" r="82%">
+                <stop offset="0" stop-color="#fff2d6"/><stop offset=".3" stop-color="#cec4ab"/>
+                <stop offset=".62" stop-color="#777769"/><stop offset=".85" stop-color="#343b3e"/>
+                <stop offset="1" stop-color="#171e24"/>
+              </radialGradient>
+              <radialGradient id="moon-halo">
+                <stop offset=".6" stop-color="#edd6a5" stop-opacity=".22"/>
+                <stop offset=".8" stop-color="#ff9a63" stop-opacity=".09"/>
+                <stop offset="1" stop-color="#ff9a63" stop-opacity="0"/>
+              </radialGradient>
+              <radialGradient id="crater-shade" cx="65%" cy="75%">
+                <stop stop-color="#eadbb9" stop-opacity=".12"/>
+                <stop offset="1" stop-color="#2c3337" stop-opacity=".38"/>
+              </radialGradient>
+              <clipPath id="moon-clip"><circle cx="374" cy="358" r="172"/></clipPath>
+            </defs>
+            <circle class="bp-halo" cx="374" cy="358" r="245" fill="url(#moon-halo)"/>
+            <g class="bp-stars" fill="#efe8dc">
+              <circle cx="72" cy="78" r="1.6"/><circle cx="474" cy="94" r="2"/>
+              <circle cx="510" cy="202" r="1.2"/><circle cx="108" cy="384" r="1.8"/>
+              <circle cx="158" cy="56" r="1"/><circle cx="420" cy="48" r="1"/>
+              <path d="M78 290v12m-6-6h12M452 150v8m-4-4h8" stroke="currentColor" stroke-width="1"/>
+            </g>
+            <circle class="bp-moon" cx="374" cy="358" r="172" />
+            <g class="bp-craters" clip-path="url(#moon-clip)">
+              <ellipse cx="282" cy="284" rx="39" ry="32" transform="rotate(-30 282 284)"/>
+              <circle cx="432" cy="400" r="27"/><circle cx="352" cy="456" r="19"/>
+              <circle cx="474" cy="306" r="14"/><circle cx="292" cy="392" r="11"/>
+              <circle cx="342" cy="242" r="17"/><circle cx="400" cy="304" r="9"/>
+              <circle cx="468" cy="466" r="37"/><circle cx="244" cy="338" r="8"/>
+              <circle cx="328" cy="350" r="5"/><circle cx="420" cy="476" r="7"/>
+              <path d="M230 310Q270 224 346 210M236 320l-3 12" fill="none" stroke="#fff5de" stroke-opacity=".45" stroke-width="2"/>
             </g>
             <g class="bp-grid">
               <path d="M0 140h560M0 280h560M0 420h560M140 0v560M280 0v560M420 0v560" />

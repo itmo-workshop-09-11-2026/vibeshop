@@ -1,3 +1,4 @@
+import { initMotion } from "./ui/motion.js";
 import { PRODUCTS } from "./data/products.js";
 import { PROMO_CODES } from "./config.js";
 import { loadCatalog } from "./core/apiCatalog.js";
@@ -14,6 +15,8 @@ import { initCart } from "./ui/cartView.js";
 import { initExpedition } from "./ui/expeditionView.js";
 import { initCheckout } from "./ui/checkout.js";
 import { initInfo } from "./ui/infoView.js";
+
+initMotion();
 
 // Каталог и промокоды берём с бэкенда; если он недоступен — встроенные данные.
 const catalogData = await loadCatalog({ fallback: { products: PRODUCTS, promos: PROMO_CODES } });

@@ -559,3 +559,73 @@ a { color: inherit; }
   .hero__brand { letter-spacing: -.035em; }
   .card__buy .btn { flex-grow: 1; }
 }
+
+/* Свет и тактильный отклик. Все движения короткие, без бесконечных циклов. */
+.hero { background: radial-gradient(ellipse at 78% 52%, #3b342a 0, #1d2024 34%, var(--bg) 72%); }
+.hero__grid { min-height: calc(100svh - var(--header-size, var(--header-h)) - 1px); padding-block: clamp(24px, 4vh, 48px); }
+.hero__art { border-color: #efe8dc1a; border-radius: 50% 50% 8px 8px; background: radial-gradient(circle at var(--light-x, 65%) var(--light-y, 40%), #f6dca416, transparent 60%); }
+.blueprint { overflow: visible; max-height: min(66svh, 680px); }
+.bp-moon { fill: url(#moon-surface); stroke: #f7e3b988; stroke-width: 1; filter: drop-shadow(-5px -3px 12px #ffe1a530); }
+.bp-craters circle, .bp-craters ellipse { fill: url(#crater-shade); stroke: #f5e4c42b; stroke-width: 1.5; }
+.bp-grid { opacity: .45; }
+.bp-orbit { stroke-opacity: .65; }
+.bp-body { fill: #30343d; }
+.bp-panel rect { fill: #242e3a; }
+.bp-note text { paint-order: stroke; stroke: #17191d; stroke-width: 3px; stroke-linejoin: round; }
+.hero__cap { position: relative; }
+.btn, .hbtn, .chip, .icon-btn, .fav { transition: background-color .22s, border-color .22s, color .22s, box-shadow .22s, transform .22s; }
+.btn--primary { box-shadow: 0 3px 0 #9c300c; }
+.btn--primary:hover:not(:disabled) { box-shadow: 0 5px 24px #ff5a1f35, 0 3px 0 #9c300c; }
+.btn:active:not(:disabled), .hbtn:active, .chip:active { transform: translateY(2px); }
+.card__media { transition: box-shadow .3s, border-color .3s; }
+.card:hover .card__media { border-color: #b5360a88; box-shadow: 0 12px 30px #27231b12; }
+.promo__applied { border-radius: 4px; box-shadow: inset 3px 0 var(--or); padding: 8px 12px; background: #ff5a1f12; }
+.sum__total { border-radius: 4px; }
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .btn:hover:not(:disabled), .hbtn:hover { transform: translateY(-2px); }
+  .fav:hover { transform: scale(1.07); }
+  .hero__art { transition: border-color .3s, box-shadow .3s; }
+  .hero__art:hover { border-color: #f3d5a14d; box-shadow: 0 0 70px #f3d5a10a; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .hero__copy { animation: hero-arrive .4s var(--ease) both; }
+  .hero__art { animation: art-arrive .4s var(--ease) both; }
+  .btn.is-done .i { animation: check-arrive .3s var(--ease); }
+  @keyframes hero-arrive { from { opacity: .3; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes art-arrive { from { opacity: .3; transform: scale(.97); } to { opacity: 1; transform: scale(1); } }
+  @keyframes check-arrive { from { opacity: 0; transform: scale(.6) rotate(-15deg); } to { opacity: 1; transform: scale(1) rotate(0); } }
+}
+@media (max-width: 860px) {
+  .hero__grid { gap: 16px; align-content: center; }
+  .hero__copy { gap: 12px; }
+  .hero__art { max-width: min(300px, 30svh); padding: 10px; border-radius: 12px; }
+  .hero__art .blueprint { display: block; }
+  .hero__cap { font-size: .55rem; padding-top: 6px; }
+  .hero__brand { font-size: clamp(3rem, 12vw, 5rem); }
+  .hero__tag { font-size: clamp(1.25rem, 3vw, 1.75rem); max-width: none; }
+  .hero__lead { font-size: 1rem; line-height: 1.45; }
+  .hero__stats { padding-top: 12px; }
+}
+@media (max-width: 560px) {
+  .hero__grid { padding-block: 18px; gap: 12px; }
+  .hero__copy { gap: 10px; }
+  .hero__brand { font-size: clamp(3rem, 16vw, 4rem); }
+  .hero__tag { font-size: 1.3rem; }
+  .hero__lead { font-size: .9rem; }
+  .hero__cta { gap: 8px; }
+  .hero__cta .btn { min-height: 44px; font-size: .9rem; }
+  .hero__stats { gap: 16px; padding-top: 10px; }
+  .hero__stats dd { font-size: 1.25rem; }
+  .hero__stats dt { font-size: .58rem; }
+  .hero__art { max-width: min(220px, 26svh); padding: 6px; }
+  .hero__cap { display: none; }
+}
+@media (min-width: 861px) and (max-height: 760px) {
+  .hero__brand { font-size: clamp(4rem, 8vw, 7rem); }
+  .hero__tag { font-size: 1.8rem; }
+  .hero__lead { font-size: 1rem; }
+  .hero__copy { gap: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__art, .hero__copy, .btn, .hbtn, .fav, .chip { animation: none !important; transition: none !important; }
+}
