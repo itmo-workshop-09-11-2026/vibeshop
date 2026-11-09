@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400" role="img">
+<rect width="400" height="400" fill="#e7e0d1"/>
+<g stroke="#1b1d21" stroke-opacity=".07" stroke-width="1" fill="none"><path d="M40 0V400M0 40H400"/><path d="M80 0V400M0 80H400"/><path d="M120 0V400M0 120H400"/><path d="M160 0V400M0 160H400"/><path d="M200 0V400M0 200H400"/><path d="M240 0V400M0 240H400"/><path d="M280 0V400M0 280H400"/><path d="M320 0V400M0 320H400"/><path d="M360 0V400M0 360H400"/></g>
+<path d="M20 28H36M28 20V36" stroke="#1b1d21" stroke-width="1.6" stroke-linecap="round" fill="none"/><path d="M364 28H380M372 20V36" stroke="#1b1d21" stroke-width="1.6" stroke-linecap="round" fill="none"/><path d="M20 372H36M28 364V380" stroke="#1b1d21" stroke-width="1.6" stroke-linecap="round" fill="none"/><path d="M364 372H380M372 364V380" stroke="#1b1d21" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+
+
+    <circle cx="200" cy="200" r="132" fill="#34373d" stroke="#1b1d21" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+    <circle cx="200" cy="200" r="116" fill="none" stroke="#f7f2e7" stroke-width="3" stroke-dasharray="6 5"/>
+    <circle cx="200" cy="200" r="88" fill="#f7f2e7" stroke="#1b1d21" stroke-linejoin="round" stroke-linecap="round" stroke-width="2.6"/>
+    <circle cx="200" cy="220" r="46" fill="#34373d" stroke="#1b1d21" stroke-linejoin="round" stroke-linecap="round" stroke-width="2.6"/>
+    <path d="M168 196q20-8 40 2M162 214q28-10 58 2M164 234q30-8 62 2" fill="none" stroke="#f7f2e7" stroke-width="3" stroke-linecap="round" opacity=".7"/>
+    <ellipse cx="200" cy="200" rx="108" ry="34" fill="none" stroke="#ff5a1f" stroke-width="5" transform="rotate(-24 200 200)"/>
+    <circle cx="289" cy="161" r="11" fill="#ff5a1f" stroke="#1b1d21" stroke-linejoin="round" stroke-linecap="round" stroke-width="2.6"/>
+    <path d="M70 300q130 62 260 0" fill="none"/>
+    <g fill="#f7f2e7"><circle cx="112" cy="132" r="3"/><circle cx="140" cy="108" r="2"/><circle cx="256" cy="108" r="2.4"/></g>
+</svg>

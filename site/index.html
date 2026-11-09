@@ -1,20 +1,415 @@
 <!doctype html>
 <html lang="ru">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Наш магазин — старт</title>
+  <title>ОРБИТА — снабжение за пределами Земли</title>
+  <meta name="description"
+    content="Учебный интернет-магазин вымышленного бренда ОРБИТА: космическая еда, оборудование и быт для частных экспедиций на Луну, Марс и орбитальную станцию.">
+  <meta name="theme-color" content="#131417">
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="./styles.css">
-  <script src="./app.js" defer></script>
+  <script type="module" src="./js/main.js"></script>
 </head>
-<body>
-  <main>
-    <img src="./assets/shop.svg" width="80" height="80" alt="Вывеска магазина">
-    <p class="eyebrow">AI-воркшоп · ИТМО</p>
-    <h1>Здесь будет ваш магазин</h1>
-    <p>Придумайте тему, добавьте каталог и соберите первую корзину.</p>
-    <p id="status" role="status">JavaScript ещё не запущен.</p>
-    <a href="https://github.com/itmo-workshop-09-11-2026/workshop-guide/blob/main/docs/task.md">Открыть задание</a>
+
+<body id="top">
+  <!-- Спрайт иконок: единый стиль, штрих 1.6 -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-cart" viewBox="0 0 24 24">
+        <path d="M3 4h2.4l2 10.2a1.6 1.6 0 0 0 1.6 1.3h8.2a1.6 1.6 0 0 0 1.6-1.2L20 8H6.2" />
+        <circle cx="9.5" cy="19.5" r="1.2" />
+        <circle cx="17" cy="19.5" r="1.2" />
+      </symbol>
+      <symbol id="i-heart" viewBox="0 0 24 24">
+        <path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.2a4.3 4.3 0 0 1 7.5 2.6C19.5 15.4 12 20 12 20z" />
+      </symbol>
+      <symbol id="i-search" viewBox="0 0 24 24">
+        <circle cx="11" cy="11" r="6.5" />
+        <path d="m16 16 4.5 4.5" />
+      </symbol>
+      <symbol id="i-close" viewBox="0 0 24 24">
+        <path d="M6 6l12 12M18 6 6 18" />
+      </symbol>
+      <symbol id="i-plus" viewBox="0 0 24 24">
+        <path d="M12 5v14M5 12h14" />
+      </symbol>
+      <symbol id="i-minus" viewBox="0 0 24 24">
+        <path d="M5 12h14" />
+      </symbol>
+      <symbol id="i-trash" viewBox="0 0 24 24">
+        <path
+          d="M4.5 7h15M9.5 7V4.5h5V7M6.5 7l.8 12a1.5 1.5 0 0 0 1.5 1.4h6.4a1.5 1.5 0 0 0 1.5-1.4l.8-12M10 11v6M14 11v6" />
+      </symbol>
+      <symbol id="i-undo" viewBox="0 0 24 24">
+        <path d="M9 7 4.5 11.5 9 16M5 11.5h9a5 5 0 0 1 0 10h-2" />
+      </symbol>
+      <symbol id="i-check" viewBox="0 0 24 24">
+        <path d="m5 12.5 4.5 4.5L19 7.5" />
+      </symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24">
+        <path d="M4 12h15M13 6l6 6-6 6" />
+      </symbol>
+      <symbol id="i-back" viewBox="0 0 24 24">
+        <path d="M20 12H5M11 6l-6 6 6 6" />
+      </symbol>
+      <symbol id="i-download" viewBox="0 0 24 24">
+        <path d="M12 4v11M7 11l5 5 5-5M5 20h14" />
+      </symbol>
+      <symbol id="i-print" viewBox="0 0 24 24">
+        <path d="M7 9V4h10v5M7 17H4.5v-6.5a1.5 1.5 0 0 1 1.5-1.5h12a1.5 1.5 0 0 1 1.5 1.5V17H17M7 14h10v6H7z" />
+      </symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24">
+        <path d="M19.5 14.5A8 8 0 0 1 9.5 4.5a8 8 0 1 0 10 10z" />
+      </symbol>
+      <symbol id="i-mars" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="8" />
+        <path d="M6.5 10c2.5.8 3.5 2.6 6 2.2s3.8-1 5-.2M8 16.5c1.5-.6 2.5-.2 4 .3" />
+      </symbol>
+      <symbol id="i-station" viewBox="0 0 24 24">
+        <rect x="9.5" y="9" width="5" height="6" rx="1" />
+        <path d="M9.5 12H7M17 12h-2.5M2.5 9h4.5v6H2.5zM17 9h4.5v6H17zM12 9V5.5M12 15v3.5" />
+      </symbol>
+      <symbol id="i-comfort" viewBox="0 0 24 24">
+        <path
+          d="M5 10.5V8a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v2.5M3.5 12a1.8 1.8 0 0 1 3.5 1v1.5h10V13a1.8 1.8 0 0 1 3.5-1v5h-17zM6 17v2M18 17v2" />
+      </symbol>
+      <symbol id="i-research" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="2" />
+        <ellipse cx="12" cy="12" rx="9" ry="3.8" transform="rotate(-30 12 12)" />
+        <ellipse cx="12" cy="12" rx="9" ry="3.8" transform="rotate(30 12 12)" />
+      </symbol>
+      <symbol id="i-light" viewBox="0 0 24 24">
+        <path d="M20 4c-7 .5-12 4-13.5 11L5 20M20 4c.5 7-2 12-9 13.5M9 15l5-5" />
+      </symbol>
+      <symbol id="i-info" viewBox="0 0 24 24">
+        <circle cx="12" cy="12" r="8.5" />
+        <path d="M12 11v5.5M12 7.7v.1" />
+      </symbol>
+      <symbol id="i-alert" viewBox="0 0 24 24">
+        <path d="M12 4 2.8 19.5h18.4zM12 10v4.5M12 17v.1" />
+      </symbol>
+      <symbol id="i-box" viewBox="0 0 24 24">
+        <path d="M3.5 7.5 12 3l8.5 4.5v9L12 21l-8.5-4.5zM3.5 7.5 12 12l8.5-4.5M12 12v9" />
+      </symbol>
+    </defs>
+  </svg>
+
+  <a class="skip" href="#catalog">К каталогу</a>
+
+  <header class="site-header">
+    <div class="wrap site-header__row">
+      <a class="logo" href="#top" aria-label="ОРБИТА — в начало страницы">
+        <span class="logo__mark" aria-hidden="true"><i></i></span><span class="logo__word"
+          aria-hidden="true">РБИТА</span>
+        <span class="logo__sub" aria-hidden="true">снабжение за пределами Земли</span>
+      </a>
+      <nav class="nav" aria-label="Основная навигация">
+        <a href="#catalog">Каталог</a>
+        <a href="#expedition">Экспедиция</a>
+        <a href="#about">О бренде</a>
+      </nav>
+      <div class="header-actions">
+        <button type="button" class="hbtn" id="fav-open" aria-pressed="false">
+          <svg class="i" aria-hidden="true">
+            <use href="#i-heart" />
+          </svg>
+          <span class="hbtn__label">Избранное</span>
+          <span class="hbtn__count" id="fav-count">0</span>
+        </button>
+        <button type="button" class="hbtn hbtn--cart" id="cart-open" aria-haspopup="dialog">
+          <svg class="i" aria-hidden="true">
+            <use href="#i-cart" />
+          </svg>
+          <span class="hbtn__label">Корзина</span>
+          <span class="hbtn__count" id="cart-count">0</span>
+          <span class="hbtn__sum" id="cart-sum">0&nbsp;₽</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ПЕРВЫЙ ЭКРАН -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero__grid">
+        <div class="hero__copy">
+          <p class="eyebrow">Каталог 2026 · частные экспедиции</p>
+          <h1 id="hero-title">
+            <span class="hero__brand">ОРБИТА</span>
+            <span class="hero__tag">Снабжение за пределами&nbsp;Земли</span>
+          </h1>
+          <p class="hero__lead">Соберите комплект для путешествия на Луну, Марс или орбитальную станцию: от манговых
+            кубиков невесомости до термоплэда «Тёмная сторона».</p>
+          <div class="hero__cta">
+            <a class="btn btn--primary btn--lg" href="#catalog">Открыть каталог <svg class="i" aria-hidden="true">
+                <use href="#i-arrow" />
+              </svg></a>
+            <a class="btn btn--ghost btn--lg" href="#expedition">Собрать экспедицию</a>
+          </div>
+          <dl class="hero__stats" id="hero-stats" aria-label="Коротко об ассортименте"></dl>
+        </div>
+
+        <figure class="hero__art">
+          <svg class="blueprint" viewBox="0 0 560 560" role="img" aria-labelledby="bp-title bp-desc">
+            <title id="bp-title">Чертёж модуля ОР-1 на орбите Луны</title>
+            <desc id="bp-desc">Герметичный модуль с солнечными панелями и иллюминаторами на фоне Луны; подписаны
+              основные узлы и длина.</desc>
+            <circle class="bp-moon" cx="408" cy="372" r="184" />
+            <g class="bp-craters">
+              <circle cx="340" cy="300" r="34" />
+              <circle cx="470" cy="420" r="22" />
+              <circle cx="392" cy="470" r="14" />
+              <circle cx="494" cy="330" r="11" />
+              <circle cx="322" cy="410" r="8" />
+            </g>
+            <g class="bp-grid">
+              <path d="M0 140h560M0 280h560M0 420h560M140 0v560M280 0v560M420 0v560" />
+            </g>
+            <g transform="rotate(-22 280 280)">
+              <ellipse class="bp-orbit" cx="280" cy="280" rx="262" ry="92" />
+              <circle class="bp-dot" r="9" cx="0" cy="0" />
+            </g>
+            <g transform="translate(270 270) rotate(-16)">
+              <g class="bp-panel">
+                <rect x="-38" y="-152" width="76" height="92" />
+                <path d="M-13 -152v92M12 -152v92M-38 -122h76M-38 -91h76" />
+                <rect x="-38" y="60" width="76" height="92" />
+                <path d="M-13 60v92M12 60v92M-38 91h76M-38 122h76" />
+              </g>
+              <path class="bp-line" d="M0 -60v-0M0 56v4" />
+              <rect class="bp-body" x="-138" y="-56" width="276" height="112" rx="56" />
+              <rect class="bp-band" x="-60" y="-56" width="120" height="112" />
+              <path class="bp-line" d="M-60 -56v112M60 -56v112" />
+              <circle class="bp-win" cx="-100" cy="0" r="15" />
+              <circle class="bp-win" cx="-24" cy="0" r="14" />
+              <circle class="bp-win" cx="24" cy="0" r="14" />
+              <rect class="bp-lock" x="96" y="-18" width="30" height="36" rx="6" />
+              <path class="bp-line" d="M92 -56l16-40" />
+              <circle class="bp-win" cx="108" cy="-98" r="4" />
+            </g>
+            <g class="bp-note">
+              <path d="M178 232 118 176" />
+              <circle cx="178" cy="232" r="3" />
+              <text x="40" y="168">01 ГЕРМОКАБИНА</text>
+              <path d="M270 150V96" />
+              <circle cx="270" cy="150" r="3" />
+              <text x="230" y="86">02 ПАНЕЛЬ</text>
+              <path d="M368 252 430 206" />
+              <circle cx="368" cy="252" r="3" />
+              <text x="396" y="196">03 ШЛЮЗ</text>
+              <path d="M110 466h340M110 456v20M450 456v20" />
+              <text x="280" y="496" text-anchor="middle">L 4 200 мм · Ø 1 200 мм</text>
+              <text x="40" y="548">МОДУЛЬ ОР-1 · ЛИСТ 01 / 01</text>
+            </g>
+          </svg>
+          <figcaption class="hero__cap">Модуль ОР-1: схема вымышленной экспедиции «Орбита-1»</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- КАТАЛОГ -->
+    <section class="catalog" id="catalog" aria-labelledby="catalog-title">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="eyebrow eyebrow--paper">Раздел 01 · Каталог</p>
+          <h2 id="catalog-title">Снаряжение и&nbsp;припасы</h2>
+          <p class="section-head__note">Промокод <strong>ORBIT10</strong> даёт скидку 10% на товары в корзине.</p>
+        </header>
+
+        <form class="toolbar" id="toolbar" role="search" aria-label="Поиск и фильтры каталога" onsubmit="return false">
+          <div class="field field--search">
+            <label for="search">Поиск по названию</label>
+            <div class="search">
+              <svg class="i" aria-hidden="true">
+                <use href="#i-search" />
+              </svg>
+              <input id="search" type="search" name="q" placeholder="Например, кружка" autocomplete="off"
+                spellcheck="false">
+            </div>
+          </div>
+          <div class="field field--sort">
+            <label for="sort">Сортировка</label>
+            <select id="sort" name="sort"></select>
+          </div>
+          <div class="field field--fav">
+            <button type="button" class="chip chip--toggle" id="fav-only" aria-pressed="false">
+              <svg class="i" aria-hidden="true">
+                <use href="#i-heart" />
+              </svg> Только избранное
+            </button>
+          </div>
+          <div class="cats" id="cats" role="group" aria-label="Категории"></div>
+        </form>
+
+        <div class="results-bar">
+          <p class="results-bar__count" id="result-count" role="status" aria-live="polite"></p>
+          <button type="button" class="link-btn" id="reset-filters" hidden>Сбросить фильтры</button>
+        </div>
+
+        <ul class="grid" id="grid" aria-label="Товары"></ul>
+
+        <div class="empty" id="empty" hidden>
+          <svg class="i i--xl" aria-hidden="true">
+            <use href="#i-search" />
+          </svg>
+          <h3 id="empty-title">Ничего не найдено</h3>
+          <p id="empty-text">Попробуйте изменить запрос или снять фильтры.</p>
+          <button type="button" class="btn btn--dark" id="empty-reset">Сбросить фильтры</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- СОБЕРИ ЭКСПЕДИЦИЮ -->
+    <section class="expedition" id="expedition" aria-labelledby="exp-title">
+      <div class="wrap">
+        <header class="section-head section-head--dark">
+          <p class="eyebrow">Раздел 02 · Подбор комплекта</p>
+          <h2 id="exp-title">Собери экспедицию</h2>
+          <p class="section-head__note">Три вопроса — и мы соберём набор из товаров каталога, объясним, зачем нужна
+            каждая вещь, и выдадим паспорт экспедиции.</p>
+        </header>
+        <div id="exp-app" class="exp">
+          <noscript>Для подбора экспедиции нужен JavaScript.</noscript>
+        </div>
+      </div>
+    </section>
+
+    <!-- О БРЕНДЕ -->
+    <section class="about" id="about" aria-labelledby="about-title">
+      <div class="wrap about__grid">
+        <div class="about__text">
+          <p class="eyebrow eyebrow--paper">Раздел 03 · О бренде</p>
+          <h2 id="about-title">Дом нужно брать&nbsp;с&nbsp;собой</h2>
+          <p>ОРБИТА появилась после вымышленной экспедиции «Орбита-1»: четыре участника вернулись и признались, что в
+            полёте им не хватало не техники, а привычных мелочей — горячего кофе, тёплого пледа и запаха хлеба.</p>
+          <p>Мы делаем снабжение для тех, кто отправляется далеко и надолго: каждая вещь проверена на здравый смысл и на
+            лёгкую улыбку.</p>
+
+        </div>
+        <div class="about__facts">
+          <h3 class="about__facts-title">«Орбита-1» в цифрах</h3>
+          <ol class="facts">
+            <li><span class="facts__n">14</span><span><strong>суток</strong> длилась вымышленная экспедиция вокруг
+                Луны.</span></li>
+            <li><span class="facts__n">4</span><span><strong>участника</strong> и один общий чайник на всех.</span></li>
+            <li><span class="facts__n">228</span><span><strong>рассветов</strong> экипаж встретил за время полёта — по
+                16 в сутки.</span></li>
+            <li><span class="facts__n">0</span><span><strong>крошек</strong> улетело в вентиляцию благодаря манговым
+                кубикам.</span></li>
+          </ol>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer class="footer">
+    <div class="wrap footer__grid">
+      <div>
+        <p class="footer__logo"><span class="logo__mark" aria-hidden="true"><i></i></span>ОРБИТА</p>
+        <p class="footer__text">Снабжение за пределами Земли. Вымышленный бренд для частных экспедиций.</p>
+      </div>
+      <nav aria-label="Разделы сайта">
+        <h2 class="footer__h">Разделы</h2>
+        <ul>
+          <li><a href="#catalog">Каталог</a></li>
+          <li><a href="#expedition">Собери экспедицию</a></li>
+          <li><a href="#about">О бренде</a></li>
+          <li><a href="#top">В начало</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Информация">
+        <h2 class="footer__h">Информация</h2>
+        <ul>
+          <li><button type="button" class="link-btn link-btn--light" data-info="delivery">Доставка</button></li>
+          <li><button type="button" class="link-btn link-btn--light" data-info="returns">Возврат</button></li>
+          <li><button type="button" class="link-btn link-btn--light" data-info="contacts">Контакты</button></li>
+          <li><button type="button" class="link-btn link-btn--light" data-info="project">Об учебном проекте</button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="wrap footer__legal">
+      <p>© 2026 ОРБИТА (вымышленный бренд) · Иллюстрации — собственные SVG.</p>
+    </div>
+  </footer>
+
+  <!-- ДИАЛОГИ -->
+  <dialog class="dlg dlg--drawer" id="cart-dialog" aria-labelledby="cart-title">
+    <div class="dlg__box">
+      <header class="dlg__head">
+        <h2 id="cart-title">Корзина</h2>
+        <button type="button" class="icon-btn" data-close aria-label="Закрыть корзину"><svg class="i"
+            aria-hidden="true">
+            <use href="#i-close" />
+          </svg></button>
+      </header>
+      <div class="dlg__body" id="cart-body"></div>
+      <div class="toast-host" data-toast-host></div>
+      <div class="dlg__foot" id="cart-foot"></div>
+    </div>
+  </dialog>
+
+  <dialog class="dlg dlg--modal dlg--wide" id="quick-dialog" aria-labelledby="quick-title">
+    <div class="dlg__box">
+      <header class="dlg__head dlg__head--float">
+        <button type="button" class="icon-btn" data-close aria-label="Закрыть просмотр"><svg class="i"
+            aria-hidden="true">
+            <use href="#i-close" />
+          </svg></button>
+      </header>
+      <div class="dlg__body dlg__body--flush" id="quick-body"></div>
+      <div class="toast-host" data-toast-host></div>
+    </div>
+  </dialog>
+
+  <dialog class="dlg dlg--modal dlg--passport" id="passport-dialog" aria-labelledby="passport-title">
+    <div class="dlg__box">
+      <header class="dlg__head">
+        <h2 id="passport-title">Паспорт экспедиции</h2>
+        <button type="button" class="icon-btn" data-close aria-label="Закрыть паспорт"><svg class="i"
+            aria-hidden="true">
+            <use href="#i-close" />
+          </svg></button>
+      </header>
+      <div class="dlg__body" id="passport-body"></div>
+      <div class="toast-host" data-toast-host></div>
+    </div>
+  </dialog>
+
+  <dialog class="dlg dlg--modal" id="checkout-dialog" aria-labelledby="checkout-title">
+    <div class="dlg__box">
+      <header class="dlg__head">
+        <h2 id="checkout-title">Оформление (учебный режим)</h2>
+        <button type="button" class="icon-btn" data-close aria-label="Закрыть оформление"><svg class="i"
+            aria-hidden="true">
+            <use href="#i-close" />
+          </svg></button>
+      </header>
+      <div class="dlg__body" id="checkout-body"></div>
+      <div class="toast-host" data-toast-host></div>
+    </div>
+  </dialog>
+
+  <dialog class="dlg dlg--modal" id="info-dialog" aria-labelledby="info-title">
+    <div class="dlg__box">
+      <header class="dlg__head">
+        <h2 id="info-title">Информация</h2>
+        <button type="button" class="icon-btn" data-close aria-label="Закрыть окно"><svg class="i" aria-hidden="true">
+            <use href="#i-close" />
+          </svg></button>
+      </header>
+      <div class="dlg__body prose" id="info-body"></div>
+      <div class="toast-host" data-toast-host></div>
+    </div>
+  </dialog>
+
+  <!-- Уведомления и скринридер -->
+  <div class="toasts" id="toasts" aria-label="Уведомления"></div>
+  <div class="sr-only" id="live-polite" role="status" aria-live="polite" aria-atomic="true"></div>
+  <div class="sr-only" id="live-assertive" role="alert" aria-live="assertive" aria-atomic="true"></div>
+  <div id="print-root" aria-hidden="true"></div>
 </body>
+
 </html>

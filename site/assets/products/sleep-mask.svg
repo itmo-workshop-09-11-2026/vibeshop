@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400" role="img">
+<rect width="400" height="400" fill="#e7e0d1"/>
+<g stroke="#1b1d21" stroke-opacity=".07" stroke-width="1" fill="none"><path d="M40 0V400M0 40H400"/><path d="M80 0V400M0 80H400"/><path d="M120 0V400M0 120H400"/><path d="M160 0V400M0 160H400"/><path d="M200 0V400M0 200H400"/><path d="M240 0V400M0 240H400"/><path d="M280 0V400M0 280H400"/><path d="M320 0V400M0 320H400"/><path d="M360 0V400M0 360H400"/></g>
+<path d="M20 28H36M28 20V36" stroke="#1b1d21" stroke-width="1.6" stroke-linecap="round" fill="none"/><path d="M364 28H380M372 20V36" stroke="#1b1d21" stroke-width="1.6" stroke-linecap="round" fill="none"/><path d="M20 372H36M28 364V380" stroke="#1b1d21" stroke-width="1.6" stroke-linecap="round" fill="none"/><path d="M364 372H380M372 364V380" stroke="#1b1d21" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+
+
+    <path d="M30 196q40-28 90-24" fill="none" stroke="#1b1d21" stroke-linejoin="round" stroke-linecap="round" stroke-width="14"/>
+    <path d="M370 196q-40-28-90-24" fill="none" stroke="#1b1d21" stroke-linejoin="round" stroke-linecap="round" stroke-width="14"/>
+    <path d="M30 196q40-28 90-24M370 196q-40-28-90-24" fill="none" stroke="#bdb5a4" stroke-width="6" stroke-linecap="round"/>
+    <path d="M110 160q90-30 180 0 28 8 24 52-6 54-70 54-26 0-34-22-8-14-30-14t-30 14q-8 22-34 22-64 0-70-54-4-44 24-52z" fill="#34373d" stroke="#1b1d21" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+    <path d="M128 232q72 16 144 0" fill="none" stroke="#f7f2e7" stroke-width="2.4" stroke-dasharray="2 6"/>
+    <path d="M160 214a40 40 0 0 1 80 0z" fill="#ff5a1f" stroke="#1b1d21" stroke-linejoin="round" stroke-linecap="round" stroke-width="2.4"/>
+    <g stroke-linecap="round" fill="none" stroke="#ff5a1f" stroke-width="3"><path d="M200 156v-16M160 164l-10-10M240 164l10-10M132 192h-14M268 192h14"/></g>
+    <circle cx="146" cy="224" r="3" fill="#f7f2e7"/><circle cx="254" cy="224" r="3" fill="#f7f2e7"/>
+</svg>

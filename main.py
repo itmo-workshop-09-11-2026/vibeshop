@@ -22,7 +22,7 @@ def pack(site):
             for directory, directories, files in os.walk(site, followlinks=False, onerror=raise_walk_error):
                 for entry in directories + files:
                     path = Path(directory) / entry
-                    if path.is_symlink() or path.is_junction():
+                    if path.is_symlink() or getattr(path, 'is_junction', lambda: False)():
                         raise ValueError(f'Ссылка в site: {path}')
                 for entry in files:
                     path = Path(directory) / entry
